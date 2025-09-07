@@ -1,19 +1,17 @@
 "use client"
 import React, { useContext } from 'react'
-import Image from 'next/image';
-import { AiFillDelete } from 'react-icons/ai';
-import getUserCart, { clearUserCart } from '../service/cart';
+import { clearUserCart } from '../service/cart';
 import Onecart from './Onecart';
-import { Icarts, ProductElement } from '../types/Carts';
+import { ProductElement } from '../types/Carts';
 import { Cartcontext } from '../context/Cartcontext';
 import { toast } from 'sonner';
-import Loading from '../loading';
+import Link from 'next/link';
 
-export default async function page() {
+export default function CartPage() {
     const {carts ,fetchCart} = useContext(Cartcontext);
 
 
-  const products = await carts?.data?.products;
+  const products = carts?.data?.products;
     // const data = useContext(Cartcontext);
 
   function clear(){
@@ -30,7 +28,7 @@ export default async function page() {
             <p className='text-xl'>total price: <span className='text-green-400'>{carts?.data?.totalCartPrice}</span></p>
           </div>
           <div className='space-y-5 flex flex-col items-end'>
-            <button className='bg-blue-600 text-white p-3.5 py-2.5 rounded-lg '>Check out</button>
+            <Link href={`/cart/checkout/${carts?.cartId}`} className='bg-blue-600 text-white p-3.5 py-2.5 rounded-lg cursor-pointer'>Check out</Link>
             <p className='text-xl'>total number of items: <span className='text-green-400'>{carts?.numOfCartItems}</span></p>
           </div>
         </div>

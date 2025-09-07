@@ -1,10 +1,8 @@
 import { Suspense } from "react";
 import Search from "./_components/search";
-import Mainslider, { Categoryslider } from "./_components/slider"
+import { Categoryslider } from "./_components/slider"
 import Products from "./products/products";
 import Loading from "./loading";
-import Image from "next/image";
-import { get } from "http";
 import { getCategories } from "./service/categories";
 
 export default async function Home() {

@@ -1,8 +1,5 @@
 import React from 'react'
-import getUserCart from '../service/cart';
-import { Icarts, ProductElement } from '../types/Carts';
 import Onecart from './Onecart';
-import { Cartcontext } from '../context/Cartcontext';
 import { getUserWishlist } from '../service/Wishlist';
 import { Datum } from '../types/Wishlist';
 

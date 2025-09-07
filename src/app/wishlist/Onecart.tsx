@@ -1,10 +1,9 @@
 "use client"
-import React, { useContext, useEffect, useState } from 'react'
-import { Icarts, ProductElement } from '../types/Carts'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import { AiFillDelete } from 'react-icons/ai'
 import { Datum } from '../types/Wishlist';
-import { deleteUserWishlist, getUserWishlist } from '../service/Wishlist'
+import { deleteUserWishlist } from '../service/Wishlist'
 import { toast } from 'sonner'
 import { addUserCart } from '../service/cart'
 import { Cartcontext } from '../context/Cartcontext'

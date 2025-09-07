@@ -1,5 +1,4 @@
 import React from 'react'
-import Skeleton from 'react-loading-skeleton'
 import { ClipLoader } from "react-spinners";
 
 export default function Loading() {

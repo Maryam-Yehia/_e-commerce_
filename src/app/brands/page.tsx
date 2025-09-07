@@ -2,7 +2,6 @@ import React from 'react'
 import { gatAllBrand } from '../service/Brand'
 import Onebrand from './Onebrand';
 import { Ibrands } from '../types/Brands';
-import { Card } from '@/components/ui/card';
 
 export default async function page() {
   const {data} = await gatAllBrand();

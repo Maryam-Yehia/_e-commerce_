@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext } from 'react'
-import { Icarts, ProductElement } from '../types/Carts'
+import { ProductElement } from '../types/Carts'
 import Image from 'next/image'
 import { AiFillDelete } from 'react-icons/ai'
 import { toast } from 'sonner'

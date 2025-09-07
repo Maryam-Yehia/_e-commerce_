@@ -26,11 +26,11 @@ export interface Brand {
     category?: string;
 }
 
-export interface Ispecproducts {
-    data: Data;
-}
+// export interface Ispecproducts {
+//     data: Data;
+// }
 
-export interface Data {
+export interface Ispecproducts {
     sold:            number;
     images:          string[];
     subcategory:     Brand[];
@@ -48,7 +48,7 @@ export interface Data {
     createdAt:       Date;
     updatedAt:       Date;
     __v:             number;
-    reviews:         any[];
+    reviews:         unknown[];
     id:              string;
 }
 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -13,35 +14,37 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
 import Link from "next/link"
+import { checkoutt } from "@/app/service/checkout"
 
-const formSchema = z.object({
-  email: z.email(),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters.",
-  }),
+export const formSchema = z.object({
+  details: z.string(),
+  phone: z.string(),
+  city:z.string()
 })
 
-export default function ProfileForm() {
+export default function page() {
+    const {id}:{id:string} = useParams()
   const router = useRouter();
-  const form = useForm({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
-    },
+      details: "",
+      phone: "",
+      city: ""
+    }
   })
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const shippingAddress={
+        details:data?.details,
+        phone:data?.phone,
+        city:data?.city,
+    }
     // console.log(data);
-    const res = await signIn('credentials',{
-      email: data?.email,
-      password: data?.password,
-      callbackUrl:"/",
-      redirect:false
-    })
+    const res = await checkoutt(id, shippingAddress )
     if(res?.ok) router.replace("/");
     else{
       // alert(res?.error);
@@ -56,12 +59,12 @@ export default function ProfileForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-md">
         <FormField
           control={form.control}
-          name="email"
+          name="details"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>details</FormLabel>
               <FormControl>
-                <Input placeholder="example@gmail.com" type="email" {...field} />
+                <Input placeholder="" type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,19 +72,31 @@ export default function ProfileForm() {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>phone</FormLabel>
               <FormControl>
-                <Input placeholder="************" type="password" {...field} />
+                <Input placeholder="" type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <p> <Link href="/auth/signup">Don&apos;t have an account? <span className="text-blue-700 underline font-semibold">SignUp</span></Link> </p>
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="city"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>city</FormLabel>
+              <FormControl>
+                <Input placeholder="" type="text" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Pay </Button>
       </form>
     </Form>
    </div>

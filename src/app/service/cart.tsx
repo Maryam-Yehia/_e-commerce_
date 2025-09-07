@@ -1,5 +1,4 @@
 import { getToken } from '@/lib/server-utils';
-import React from 'react'
 
 export default async function getUserCart() {
     const token = await getToken();

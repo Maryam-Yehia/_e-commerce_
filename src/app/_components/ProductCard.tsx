@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { act, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaStar } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { Iproducts } from '../types/products.types';
@@ -11,15 +11,14 @@ import { Cartcontext } from '../context/Cartcontext';
 import { wishlistcontext } from '../context/WishlistContext';
 import { useRouter } from 'next/navigation';
 
-export default async function ProductCard({product}: {product: Iproducts}) {
+export default function ProductCard({product}: {product: Iproducts}) {
   // console.log(product);
 
   const title = product?.title.split(" ").slice(0, 3).join(" ");
-    const [active, setActive] = useState(false);
+  const [active, setActive] = useState(false);
 
-
-      const {carts ,fetchCart} = useContext(Cartcontext);
-      const {wishlist ,fetchwishlist} = useContext(wishlistcontext);
+  const {fetchCart} = useContext(Cartcontext);
+  const {fetchwishlist} = useContext(wishlistcontext);
 
     
 
@@ -40,7 +39,7 @@ export default async function ProductCard({product}: {product: Iproducts}) {
       
       toast.success("Add successfully");
     }
-const rout = useRouter();
+  const rout = useRouter();
     function getpro(){
       rout.push(`/productdetails/${product?._id}`);
     }

@@ -2,12 +2,12 @@
 import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
-import { getCategories } from "../service/categories";
+// import { getCategories } from "../service/categories";
 import { Icategories } from "../types/ctegories";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 export default function Mainslider() {
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,
@@ -32,7 +32,7 @@ export default function Mainslider() {
 }
 export function Categoryslider({data}:{data:Icategories[]}) {
   
-  var settings = {
+  const settings = {
     dots: true,
     infinite: true,
     speed: 500,

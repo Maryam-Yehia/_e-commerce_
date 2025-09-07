@@ -50,7 +50,7 @@ const handler = NextAuth({
           name: string;
           email: string;
           role: string;
-        },
+        };
         session.token = token?.token;
       }
 
