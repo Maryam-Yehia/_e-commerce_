@@ -1,0 +1,61 @@
+export interface Iproducts {
+    sold:            number;
+    images:          string[];
+    subcategory:     Brand[];
+    ratingsQuantity: number;
+    _id:             string;
+    title:           string;
+    slug:            string;
+    description:     string;
+    quantity:        number;
+    price:           number;
+    imageCover:      string;
+    category:        Brand;
+    brand:           Brand;
+    ratingsAverage:  number;
+    createdAt:       string;
+    updatedAt:       string;
+    id:              string;
+}
+
+export interface Brand {
+    _id:       string;
+    name:      string;
+    slug:      string;
+    image?:    string;
+    category?: string;
+}
+
+export interface Ispecproducts {
+    data: Data;
+}
+
+export interface Data {
+    sold:            number;
+    images:          string[];
+    subcategory:     Brand[];
+    ratingsQuantity: number;
+    _id:             string;
+    title:           string;
+    slug:            string;
+    description:     string;
+    quantity:        number;
+    price:           number;
+    imageCover:      string;
+    category:        Brand;
+    brand:           Brand;
+    ratingsAverage:  number;
+    createdAt:       Date;
+    updatedAt:       Date;
+    __v:             number;
+    reviews:         any[];
+    id:              string;
+}
+
+export interface Brand {
+    _id:       string;
+    name:      string;
+    slug:      string;
+    image?:    string;
+    category?: string;
+}

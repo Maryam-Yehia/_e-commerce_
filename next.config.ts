@@ -1,7 +1,26 @@
+import withFlowbiteReact from "flowbite-react/plugin/nextjs";
 import type { NextConfig } from "next";
+// import withFlowbiteReact from "flowbite-react/plugin/nextjs";
+
+// const withFlowbite = require("flowbite-react/plugin/nextjs");
+
+// module.exports = withFlowbite({
+//   reactStrictMode: true,
+// });
+
+
 
 const nextConfig: NextConfig = {
-  /* config options here */
+   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ecommerce.routemisr.com',
+        pathname: '/**/**',
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+
+export default withFlowbiteReact(nextConfig);
