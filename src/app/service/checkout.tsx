@@ -4,7 +4,7 @@ import { z } from "zod"
 
 export async function checkoutt(idcart:string , shippingAddress:z.infer<typeof formSchema>){
     const token = await getToken();
-    const res = await fetch(`${process.env}/api/v1/orders/${idcart}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/orders/${idcart}`,{
         method:"POST",
         headers: {
             "Content-Type": "application/json",
