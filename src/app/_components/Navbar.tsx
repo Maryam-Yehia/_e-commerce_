@@ -52,8 +52,8 @@ export default function Navbar() {
              {status === "loading" ? <Skeleton width={50} height={20}/> :
           (status === "authenticated"? 
           <div className="flex gap-4">
-             <div className='relative'>
-             <Link href="/cart" ><FaShoppingCart size={30} className='cursor-pointer'/></Link>
+             <div className='relative cursor-pointer'>
+             <Link href="/cart" ><FaShoppingCart size={30}/></Link>
              <span className='absolute -top-1 -right-2 text-xs font-bold bg-green-700 px-2 py-0.5 rounded-sm'>{data?.carts?.numOfCartItems || 0}</span>
            </div>
             <button className='cursor-pointer' onClick={() => signOut({callbackUrl:"/auth/login"})}>Log out</button>

@@ -20,11 +20,6 @@ export default function ProductCard({product}: {product: Iproducts}) {
   const {fetchCart} = useContext(Cartcontext);
   const {fetchwishlist} = useContext(wishlistcontext);
 
-    
-
-    // const 
-
-
     async function addtofav(){
       await addUserWishlist(product?._id);
       setActive(!active);
@@ -47,13 +42,14 @@ export default function ProductCard({product}: {product: Iproducts}) {
 
   return (
     <>
-      <div className='hover:border-1 hover:border-green-500  hover:shadow-sm hover:shadow-green-400 w-max p-5 rounded-md' onClick={()=>{getpro()}}>
-        <Image
+      <div className='hover:border-1 hover:border-green-500  hover:shadow-sm hover:shadow-green-400 w-max p-5 rounded-md' >
+        <div onClick={()=>{getpro()}} className='cursor-pointer'>
+          {product?.imageCover && <Image
           src={product?.imageCover}
           alt="Product Image"
           width={250}
           height={200}
-        />
+        /> }
         <span className='text-green-500'>{product?.category?.name}</span>
         <p className='py-2 font-semibold'>{title}</p>
         <div className='flex justify-between items-center'>
@@ -65,9 +61,10 @@ export default function ProductCard({product}: {product: Iproducts}) {
                 <span>{product?.ratingsAverage}</span>
             </div>
         </div>
+        </div>
         <div className='flex justify-between items-center gap-2 mt-4'>
             <button className='bg-green-600 py-1.5 rounded-md grow text-white cursor-pointer' onClick={()=>{addtocart()}}>+ Add</button>
-            <FaHeart size={30}  onClick={() => addtofav()} className={`${active ? " text-red-500" : " text-gray-400"}`} />
+            <FaHeart size={30}  onClick={() => addtofav()} className={`${active ? " text-red-500 cursor-pointer" : " text-gray-400 cursor-pointer"}`} />
         </div>
       </div>
     </>

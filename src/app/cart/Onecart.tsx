@@ -16,11 +16,12 @@ export default function Onecart({pro}:{pro:ProductElement}) {
     data?.fetchCart();
     toast.success("Deleted Successfully");
   }
-  function updatecart(count:string){
-    updateUserCart(pro?.product?._id , count);
-    data?.fetchCart();
+  async function updatecarte(county:number){
+    await updateUserCart(pro?.product?._id , county);
+    await data?.fetchCart();
     toast.success("update Successfully");
   }
+  
   return (
     <>
     <div className='flex justify-between items-center border-b border-gray-300 pb-5 mt-10 flex-col gap-5 md:flex-row'>
@@ -34,9 +35,9 @@ export default function Onecart({pro}:{pro:ProductElement}) {
         </div>
       </div>
       <div className='space-x-4'>
-        <button className='bg-transparent border border-green-400 px-3 py-1.5 rounded-lg cursor-pointer' onClick={()=>{updatecart('1')}}>+</button>
+        <button className='bg-transparent border border-green-400 px-3 py-1.5 rounded-lg cursor-pointer' onClick={()=>{updatecarte(1 + pro?.count)}}>+</button>
         <span>{pro?.count}</span>
-        <button className='bg-transparent border border-green-400 px-3.5 py-1.5 rounded-lg cursor-pointer' onClick={()=>{updatecart('-1')}}>-</button>
+        <button className='bg-transparent border border-green-400 px-3.5 py-1.5 rounded-lg cursor-pointer' onClick={()=>{updatecarte(pro?.count - 1)}}>-</button>
       </div>
       </div>
     </div>

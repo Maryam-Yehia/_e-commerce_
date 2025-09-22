@@ -1,7 +1,7 @@
 export async function getProducts() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/products`,
     {
-    cache:'force-cache'
+    cache:'no-cache'
     });
   const {data} = await res.json();
   return data;
@@ -9,7 +9,7 @@ export async function getProducts() {
 export async function getSpecficProducts(id:string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/products/${id}`,
     {
-    cache:'force-cache'
+    cache:'no-cache'
     });
   const {data} = await res.json();
   return data;

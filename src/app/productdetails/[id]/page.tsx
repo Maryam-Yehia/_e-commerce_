@@ -11,9 +11,9 @@ import { addUserCart } from '@/app/service/cart';
 import { Cartcontext } from '@/app/context/Cartcontext';
 import { wishlistcontext } from '@/app/context/WishlistContext';
 
-export default function ProductDetailsPage() {
+export default function Page() {
     const {id}:{id:string} = useParams();
-    const[data,setdata]=useState<Ispecproducts>();   
+    const[data,setdata]=useState<Ispecproducts>();
 
     const fetchData = async () => {
         const pro = await getSpecficProducts(id);
@@ -54,17 +54,17 @@ export default function ProductDetailsPage() {
 
   return (
     <>
-    <div className='flex justify-center items-center gap-4 '>
+    <div className='flex justify-center items-center gap-4 my-10'>
        <div>
          {data?.imageCover && (
-            <Image src={data?.imageCover} alt={data?.title} width={500} height={100} className='w-full'/>
+            <Image src={data?.imageCover} alt={data?.title} width={300} height={100} className='w-full'/>
         )}
         
        </div>
-        <div className='space-y-2'>
+        <div className='space-y-2 max-w-lg'>
             <h1 className='font-bold text-xl'>{data?.title}</h1>
             <p>{data?.description}</p>
-            <button className='bg-green-600 py-1.5 rounded-md grow text-white cursor-pointer w-full ' onClick={()=>{addtocart()}}>+ Add</button>
+            <button className='bg-green-600 py-1.5 rounded-md grow text-white cursor-pointer w-full mt-5' onClick={()=>{addtocart()}}>+ Add</button>
         </div>
         <div >
             <FaHeart size={30}  onClick={() => addtofav()} className={`${active ? " text-red-500 cursor-pointer" : " text-gray-400 cursor-pointer"}`} />

@@ -3,7 +3,7 @@ import { getCategories } from '../service/categories';
 import { Icategories } from '../types/ctegories';
 import Onecategory from './Onecategory';
 
-export default async function page() {
+export default async function Page() {
   const {data} = await getCategories();
   console.log(data);
   

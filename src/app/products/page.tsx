@@ -3,7 +3,7 @@ import Products from './products'
 import Search from '../_components/search'
 import Loading from '../loading'
 
-export default function page() {
+export default function Page() {
   return (
     <>
       <Search />

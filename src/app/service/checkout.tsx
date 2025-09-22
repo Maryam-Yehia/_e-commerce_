@@ -1,5 +1,5 @@
 import { getToken } from "@/lib/server-utils";
-import { formSchema } from "../cart/checkout/page";
+import { formSchema } from "../cart/checkout/[id]/page";
 import { z } from "zod"
 
 export async function checkoutt(idcart:string , shippingAddress:z.infer<typeof formSchema>){

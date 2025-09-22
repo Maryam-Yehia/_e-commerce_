@@ -3,7 +3,7 @@ import { gatAllBrand } from '../service/Brand'
 import Onebrand from './Onebrand';
 import { Ibrands } from '../types/Brands';
 
-export default async function page() {
+export default async function Page() {
   const {data} = await gatAllBrand();
   console.log(data);
   return (

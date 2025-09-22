@@ -1,7 +1,7 @@
 import React from 'react'
 import { Ibrands } from '../types/Brands'
 import Image from 'next/image'
-import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import { AlertDialog, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger , AlertDialogCancel } from '@/components/ui/alert-dialog'
 
 export default function Onebrand({data}:{data:Ibrands}) {
   return (

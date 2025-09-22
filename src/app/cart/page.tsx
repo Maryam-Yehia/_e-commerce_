@@ -7,7 +7,7 @@ import { Cartcontext } from '../context/Cartcontext';
 import { toast } from 'sonner';
 import Link from 'next/link';
 
-export default function CartPage() {
+export default function Page() {
     const {carts ,fetchCart} = useContext(Cartcontext);
 
 

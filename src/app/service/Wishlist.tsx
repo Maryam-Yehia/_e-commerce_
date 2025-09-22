@@ -19,7 +19,6 @@ export async function deleteUserWishlist(id:string){
         headers:{token,
             "content-type": "application/json",
         },
-        // body:JSON.stringify({productId})
     });
     return await res.json();
 }

@@ -28,7 +28,6 @@ export default function Onecart({pro  }:{pro:Datum }) {
         console.log(res);
         fetchCart();
         removeitem();
-        
         toast.success("Add successfully");
       }
 

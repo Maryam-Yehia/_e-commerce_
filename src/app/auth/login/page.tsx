@@ -53,7 +53,7 @@ export default function ProfileForm() {
   return (
    <div className="flex justify-center items-center h-screen">
      <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-md">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-md">
         <FormField
           control={form.control}
           name="email"
@@ -72,15 +72,16 @@ export default function ProfileForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel className="mt-8">Password</FormLabel>
               <FormControl>
-                <Input placeholder="************" type="password" {...field} />
+                <Input  placeholder="************" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <p> <Link href="/auth/signup">Don&apos;t have an account? <span className="text-blue-700 underline font-semibold">SignUp</span></Link> </p>
+        {/* <p className="pt-0 mt-0 hover:text-blue-500 font-semibold cursor-pointer"> <Link href="/auth/Forgetpassword">forget your password ?</Link> </p> */}
+        <p className="mt-8 mb-2 "> <Link href="/auth/signup">Don't have an account? <span className="text-blue-700 underline font-semibold">SignUp</span></Link> </p>
         <Button type="submit">Submit</Button>
       </form>
     </Form>

@@ -25,7 +25,7 @@ export const formSchema = z.object({
   city:z.string()
 })
 
-export default function page() {
+export default function Page() {
     const {id}:{id:string} = useParams()
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({

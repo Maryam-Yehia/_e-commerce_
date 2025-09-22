@@ -53,7 +53,7 @@ export async function addUserCart(productId:string){
     return await res.json();
 }
 
-export async function updateUserCart(id:string , count:string){
+export async function updateUserCart(id:string , count:number){
     const token = await getToken();
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/cart/${id}`,{
         method:"PUT",
