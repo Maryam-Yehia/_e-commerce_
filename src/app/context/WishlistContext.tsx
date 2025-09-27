@@ -1,6 +1,6 @@
 "use client"
 import { useSession } from 'next-auth/react';
-import React, { createContext, useEffect } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { Iwishlist } from '../types/Wishlist';
 import { getUserWishlist } from '../service/Wishlist';
 
@@ -16,14 +16,16 @@ export const wishlistcontext = createContext<wishlistContextType >({
 });
 
 export default function WishlistProvider({ children }: { children: React.ReactNode }) {
-  const [wishlist, setwishlist] = React.useState<Iwishlist | null>(null);
+  
+  const [wishlist, setwishlist] = useState<Iwishlist | null>(null);
 
   const {data} = useSession();
+  
 
   const fetchwishlist = async () => {
     try {
       const res = await getUserWishlist();
-      setwishlist(res);
+      await setwishlist(res);
     } catch (error) {
       console.error("Error fetching cart:", error);
     }

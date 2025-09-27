@@ -80,7 +80,7 @@ export default function ProfileForm() {
             </FormItem>
           )}
         />
-        {/* <p className="pt-0 mt-0 hover:text-blue-500 font-semibold cursor-pointer"> <Link href="/auth/Forgetpassword">forget your password ?</Link> </p> */}
+        <p className="pt-0 mt-0 hover:text-blue-500 font-semibold cursor-pointer"> <Link href="/auth/Forgetpassword">forget your password ?</Link> </p>
         <p className="mt-8 mb-2 "> <Link href="/auth/signup">Dont have an account? <span className="text-blue-700 underline font-semibold">SignUp</span></Link> </p>
         <Button type="submit">Submit</Button>
       </form>

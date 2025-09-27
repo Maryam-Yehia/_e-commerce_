@@ -1,16 +1,22 @@
+"use server"
 import { getToken } from "@/lib/server-utils";
 import { formSchema } from "../cart/checkout/[id]/page";
 import { z } from "zod"
+import { redirect } from "next/navigation";
 
-export async function checkoutt(idcart:string , shippingAddress:z.infer<typeof formSchema>){
+export async function checkoutt(idcart:string , shippingAddress:any){
     const token = await getToken();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/orders/${idcart}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/orders/checkout-session/${idcart}?url=${process.env.NEXT_PUBLIC_REDIRECT_URL}`,{
         method:"POST",
         headers: {
             "Content-Type": "application/json",
             token
         },
-        body: JSON.stringify({ shippingAddress })
+        body: JSON.stringify({...shippingAddress})
     })
-    return await res.json();
+    
+    const data = await res.json();
+    // redirect(data?.session?.url);
+    // console.log(data);
+    return data;
 }

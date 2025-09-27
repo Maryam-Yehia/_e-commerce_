@@ -19,8 +19,8 @@ export default function Onecart({pro  }:{pro:Datum }) {
   // console.log(pro?.id);
   async function removeitem(){
     // console.log("hello");
-    deleteUserWishlist(pro?._id);
-    fetchwishlist();
+    await deleteUserWishlist(pro?._id);
+    await fetchwishlist();
     toast.success("Delete successfully");
   }
       async function addtocart(){

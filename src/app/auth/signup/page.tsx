@@ -18,20 +18,21 @@ import Link from "next/link"
 
 const formSchema = z.object({
   name: z.string().min(2),
-  email: z.email(),
+  email: z.string().email(),
   password: z.string().min(8, {
     message: "Password must be at least 8 characters.",
   }),
   rePassword: z.string().min(8),
   phone: z.string()
-}).refine((data) => data?.password == data?.rePassword,{
-  error:"Passwords don't match"
+}).refine((data) => data?.password === data?.rePassword,{
+  message: "Passwords don't match",
+  path: ["rePassword"]
 })
 
 export default function Signup() {
   const router = useRouter();
 
-  const form = useForm({resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formSchema>>({resolver: zodResolver(formSchema),
     defaultValues: {
       name:"",
       email: "",
@@ -59,14 +60,16 @@ export default function Signup() {
       router.push("/auth/login");
     }
     if(!res?.ok) {
-      toast.error(pok.message);
+      toast.error(pok?.message);
+      return pok?.message;
     }
 
    } catch (error) {
     console.log(error);
 
-    const errorMessage = error instanceof Error ? error.message : "Something went wrong";
+    const errorMessage = error instanceof Error ? error?.message : "Something went wrong";
     toast.error(errorMessage);
+    return errorMessage;
    }
   }
 

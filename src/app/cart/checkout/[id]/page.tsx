@@ -13,11 +13,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { signIn } from "next-auth/react"
-import { useParams, useRouter } from "next/navigation"
+import { redirect, useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
-import Link from "next/link"
 import { checkoutt } from "@/app/service/checkout"
+
 
 export const formSchema = z.object({
   details: z.string(),
@@ -26,7 +25,7 @@ export const formSchema = z.object({
 })
 
 export default function Page() {
-    const {id}:{id:string} = useParams()
+    const {id}:{id:string} = useParams();
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,19 +37,15 @@ export default function Page() {
   })
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const shippingAddress={
-        details:data?.details,
-        phone:data?.phone,
-        city:data?.city,
+    const formdata ={shippingAddress:data};
+    const res = await checkoutt(id, formdata );
+
+    if(res?.status === "success"){
+      // toast.success(res?.status);
+      redirect(res?.session?.url);
+    }else{
+      toast.error("There is no items in the cart!");
     }
-    // console.log(data);
-    const res = await checkoutt(id, shippingAddress )
-    if(res?.ok) router.replace("/");
-    else{
-      // alert(res?.error);
-      toast.error(res?.error || "Something went wrong");
-    }
-    // console.log(res);
   }
 
   return (

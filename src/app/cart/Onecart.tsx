@@ -11,7 +11,7 @@ export default function Onecart({pro}:{pro:ProductElement}) {
   const data = useContext(Cartcontext);
   
   function deletecart(){
-    console.log(pro?.product?.id);
+    // console.log(pro?.product?.id);
     deleteUserCart(pro?.product?.id);
     data?.fetchCart();
     toast.success("Deleted Successfully");

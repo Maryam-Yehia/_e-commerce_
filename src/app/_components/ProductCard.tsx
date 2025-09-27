@@ -18,7 +18,7 @@ export default function ProductCard({product}: {product: Iproducts}) {
   const [active, setActive] = useState(false);
 
   const {fetchCart} = useContext(Cartcontext);
-  const {fetchwishlist} = useContext(wishlistcontext);
+  const {wishlist , fetchwishlist} = useContext(wishlistcontext);
 
     async function addtofav(){
       await addUserWishlist(product?._id);

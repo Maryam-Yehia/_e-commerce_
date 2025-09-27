@@ -14,7 +14,8 @@ const handler = NextAuth({
       password: { label: "Password", type: "password" }
     },
 
-    authorize: async (credentials) => {
+    authorize: async (
+      credentials: Record<"email" | "password", string> | undefined,req) => {
         const res = await fetch(`${process.env.API_BASE_URL}/api/v1/auth/signin`,{
             method: 'POST',
             headers: {
@@ -53,7 +54,7 @@ const handler = NextAuth({
         };
         session.token = token?.token;
       }
-
+      // console.log(session);
       return session;
     }
 

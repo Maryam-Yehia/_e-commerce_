@@ -1,14 +1,14 @@
-import React from 'react'
-import Onecart from './Onecart';
-import { getUserWishlist } from '../service/Wishlist';
+"use client"
+import React, { useContext } from 'react'
+import { wishlistcontext } from '../context/WishlistContext';
 import { Datum } from '../types/Wishlist';
+import Onecart from './Onecart';
 
-export default async function page() {
+export default function page() {
 
-    const {data} = await getUserWishlist();
-
- 
-
+  const {wishlist ,fetchwishlist} = useContext(wishlistcontext);
+  
+  
   return (
     <>
         <div className='bg-gray-100 rounded-lg p-8 w-[85%] mt-20 mx-auto font-semibold'>
@@ -19,7 +19,7 @@ export default async function page() {
           <div className='space-y-5 flex flex-col items-end'>
           </div>
           </div>
-          {data?.map((pro:Datum)=><Onecart key={pro._id} pro={pro} />)}
+          {wishlist?.data?.map((pro:Datum)=><Onecart key={pro._id} pro={pro} />)}
           </div>
     </>
   )

@@ -4,6 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 // import { getCategories } from "../service/categories";
 import { Icategories } from "../types/ctegories";
+import { ar } from "zod/v4/locales";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 export default function Mainslider() {
@@ -35,12 +36,13 @@ export function Categoryslider({data}:{data:Icategories[]}) {
   const settings = {
     dots: true,
     infinite: true,
+    arrows: false,
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
   };
   return (
-    <div className="my-10 w-[98%]">
+    <div className="my-10 ">
       <Slider {...settings}>
         {data.map((item)=>
         <div key={item?._id} className="flex justify-center">
