@@ -4,7 +4,7 @@ import { wishlistcontext } from '../context/WishlistContext';
 import { Datum } from '../types/Wishlist';
 import Onecart from './Onecart';
 
-export default function page() {
+export default function Page() {
 
   const {wishlist ,fetchwishlist} = useContext(wishlistcontext);
   
