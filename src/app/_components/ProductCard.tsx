@@ -10,19 +10,21 @@ import { addUserCart } from '../service/cart';
 import { Cartcontext } from '../context/Cartcontext';
 import { wishlistcontext } from '../context/WishlistContext';
 import { useRouter } from 'next/navigation';
+import { tr } from 'zod/v4/locales';
+import { Datum } from '../types/Wishlist';
 
 export default function ProductCard({product}: {product: Iproducts}) {
   // console.log(product);
 
   const title = product?.title.split(" ").slice(0, 3).join(" ");
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
 
   const {fetchCart} = useContext(Cartcontext);
   const {wishlist , fetchwishlist} = useContext(wishlistcontext);
 
     async function addtofav(){
       await addUserWishlist(product?._id);
-      setActive(!active);
+      // setActive(!active);
       fetchwishlist();
       toast.success("Add successfully");
     }
@@ -31,9 +33,13 @@ export default function ProductCard({product}: {product: Iproducts}) {
       const res = await addUserCart(product?._id);
       console.log(res);
       fetchCart();
-      
       toast.success("Add successfully");
     }
+
+    function checkiffavorite(id:string){
+      return wishlist?.data?.find((item:Datum) => item?._id === id);
+    }
+
   const rout = useRouter();
     function getpro(){
       rout.push(`/productdetails/${product?._id}`);
@@ -64,7 +70,7 @@ export default function ProductCard({product}: {product: Iproducts}) {
         </div>
         <div className='flex justify-between items-center gap-2 mt-4'>
             <button className='bg-green-600 py-1.5 rounded-md grow text-white cursor-pointer' onClick={()=>{addtocart()}}>+ Add</button>
-            <FaHeart size={30}  onClick={() => addtofav()} className={`${active ? " text-red-500 cursor-pointer" : " text-gray-400 cursor-pointer"}`} />
+            <FaHeart size={30}  onClick={() => addtofav()} className={`${checkiffavorite(product?._id) ? " text-red-500 cursor-pointer" : " text-gray-400 cursor-pointer"}`} />
         </div>
       </div>
     </>

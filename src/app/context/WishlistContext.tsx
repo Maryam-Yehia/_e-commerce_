@@ -18,7 +18,8 @@ export const wishlistcontext = createContext<wishlistContextType >({
 export default function WishlistProvider({ children }: { children: React.ReactNode }) {
   
   const [wishlist, setwishlist] = useState<Iwishlist | null>(null);
-
+  console.log(wishlist);
+  
   const {data} = useSession();
   
 
